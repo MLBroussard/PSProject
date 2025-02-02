@@ -1,7 +1,26 @@
-﻿function Build-PSProject {
+﻿<#
+.SYNOPSIS
+    This script creates a folder structure for a PowerShell project.
+.DESCRIPTION
+
+.PARAMETER PSProjectName
+    The name of the project to create.
+.INPUTS
+    None
+.OUTPUTS
+    None
+.EXAMPLE
+    Build-PSProjectStructure.ps1
+    This command will prompt you for the name of the project and create the folder structure.
+.NOTES
+    File Name      : New-PSProjectStructure.ps1
+    Author         : Michelle Broussard
+    Last Modified  : 2 February 2025
+#>
+function New-PSProject {
 
     # Define the root folder
-    $rootFolder = Read-Host "PSProjectName"
+    $rootFolder = Read-Host "Enter the name of the project"
 
     # Define the folder structure
     $folders = @(

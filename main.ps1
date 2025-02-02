@@ -1,6 +1,12 @@
-. .\Set-Config.ps1
-. .\Get-Config.ps1
+. .\Lock-ConfigFile.ps1
+. .\Read-SecureConfigFile.ps1
+. .\Unlock-SecureConfigFile.ps1
 
-Set-Config ".\employees.json"
-Start-Sleep -Seconds 2
-Get-Config ".\employees.secured.json"
+# Lock the configuration file
+Lock-ConfigFile -Path .\config.json
+
+# Read the secured configuration file
+Read-SecureConfigFile -Path .\config.secured.json
+
+# Unlock the secured configuration file
+Unlock-SecureConfigFile -Path .\config.secured.json
