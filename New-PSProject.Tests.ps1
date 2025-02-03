@@ -2,7 +2,7 @@
 
 Import-Module Pester
 
-Describe "Build-PSProject" {
+Describe "New-PSProject" {
 
     BeforeAll {
         # Mock Read-Host to provide a consistent project name

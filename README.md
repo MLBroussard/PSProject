@@ -2,7 +2,7 @@
 The intent of PSProject is to standarize the process of building a PowerShell Project.
 
 ## Requirements
-|    Reccomended    |     *Minimum*      |
+|    Recommended    |     *Minimum*      |
 | ----------------- | ------------------ |
 | PowerShell v7.0+  |  *PowerShell v5.1* |
 | Visual Studio Code | *PowerShell ISE* |
