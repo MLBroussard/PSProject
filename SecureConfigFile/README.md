@@ -40,4 +40,4 @@ Michelle Broussard
 2 February 2025
 
 ## License
-The PSProject is licensed under the [MIT license](PSProject/blob/main/LICENSE).
+The PSProject is licensed under the [MIT license](https://github.com/MLBroussard/PSProject/blob/main/LICENSE).
