@@ -1,5 +1,5 @@
 # PSProject
-The intent of PSProject is to standarize the process of building a PowerShell Project.
+The intent of PSProject is to standardize the process of building a PowerShell Project.
 
 ## Requirements
 |    Recommended    |     *Minimum*      |
