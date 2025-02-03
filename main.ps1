@@ -4,4 +4,4 @@ param()
 Write-Verbose $PSScriptRoot
 
 # Load .\Scripts\Private\New-PSProject.ps1
-Import-Module -Name $PSScriptRoot\Modules\PSProject
+. $PSScriptRoot\Scripts\Private\New-PSProject.ps1

@@ -31,6 +31,7 @@ function New-PSProject {
 
     # Define the root folder
     $rootFolder = $Name
+    Write-Verbose "Creating folder structure for project: $rootFolder"
 
     # Define the folder structure
     $folders = @(
@@ -49,10 +50,11 @@ function New-PSProject {
         }
     }
 
-    $source = "..\..\$PSScriptRoot"
+    $source = "$PSScriptRoot\Modules\*"
+    Write-Verbose "Copying files from $source to $rootFolder"
     $destination = "$rootFolder\Modules"
     New-Item -Path $destination -ItemType Directory -Force | Out-Null # Suppress output
-    Copy-Item -Path "$source\Modules\*" -Destination $destination -Recurse -Force
+    Copy-Item -Path $source -Exclude "PSProject" -Destination $destination -Recurse -Force
 
     # Create README.md file
     $readmeFile = Join-Path -Path $rootFolder -ChildPath "README.md"
@@ -64,4 +66,3 @@ function New-PSProject {
 
     Write-Verbose "FILE STRUCTURE CREATED SUCCESSFULLY"
 }
-Export-ModuleMember -Function New-PSProject
