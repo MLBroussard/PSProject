@@ -30,7 +30,7 @@ function New-PSProject {
 
     # Define the folder structure
     $folders = @(
-        "$rootFolder/Modules",
+        "$rootFolder/Modules/SecureConfigFile",
         "$rootFolder/Scripts/Public",
         "$rootFolder/Scripts/Private",
         "$rootFolder/Tests",
@@ -41,7 +41,6 @@ function New-PSProject {
 
     # Define the files to create
     $files = @{
-        "$rootFolder/Modules" = @("MyModule1.psm1", "MyModule2.psm1", "MyModule3.psm1");
         "$rootFolder/Scripts/Public" = @("Get-Something.ps1", "Set-Something.ps1", "Remove-Something.ps1");
         "$rootFolder/Scripts/Private" = @("Invoke-Something.ps1", "Test-Something.ps1", "Write-Something.ps1");
         "$rootFolder/Scripts" = @("Main.ps1");
@@ -55,7 +54,7 @@ function New-PSProject {
     # Create folders
     foreach ($folder in $folders) {
         if (-not (Test-Path -Path $folder)) {
-            New-Item -Path $folder -ItemType Directory -Force | Out-Null
+            New-Item -Path $folder -ItemType Directory -Force | Out-Null # Suppress output
         }
     }
 
@@ -64,11 +63,18 @@ function New-PSProject {
         foreach ($file in $files[$folder]) {
             $filePath = Join-Path -Path $folder -ChildPath $file
             if (-not (Test-Path -Path $filePath)) {
-                New-Item -Path $filePath -ItemType File -Force | Out-Null
+                New-Item -Path $filePath -ItemType File -Force | Out-Null # Suppress output
             }
         }
     }
 
-    Write-Output "File structure created successfully."
+    # Copy the module files
+    $moduleFiles = Get-ChildItem -Path "$PSScriptRoot\Modules\SecureConfigFile" -Recurse
+    foreach ($moduleFile in $moduleFiles) {
+        $destination = Join-Path -Path "$rootFolder\Modules\SecureConfigFile" -ChildPath $moduleFile.Name
+        Copy-Item -Path $moduleFile.FullName -Destination $destination -Force
+    }
+
+    Write-Verbose "FILE STRUCTURE CREATED SUCCESSFULLY"
 
 }
