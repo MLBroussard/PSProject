@@ -17,13 +17,13 @@ PSProjectName
       MyModule3.psm1
    Scripts
       Public
-         Get Something.ps1
-         Set Something.ps1
-         Remove Something.ps1
+         Get-Something.ps1
+         Set-Something.ps1
+         Remove-Something.ps1
       Private
-         Invoke Something.ps1
-         Test Something.ps1
-         Write Something.ps1
+         Invoke-Something.ps1
+         Test-Something.ps1
+         Write-Something.ps1
       Main.ps1
    Tests
       MyModule1.Tests.ps1
