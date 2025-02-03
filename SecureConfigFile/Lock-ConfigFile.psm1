@@ -1,3 +1,24 @@
+<#
+.SYNOPSIS
+	This script locks a configuration file using encryption.
+.DESCRIPTION
+	This script locks a configuration file using encryption. It prompts the user for
+	a passphrase and encrypts the content of the file using a symmetric key. The
+	encrypted content is stored in a new JSON file with the extension .secured.json.
+	The original file is renamed with the extension .json.bak and hidden. The original
+	file is moved to a secure location.
+.PARAMETER Path
+	The path to the configuration file.
+.EXAMPLE
+	Lock-ConfigFile -Path "C:\MyProject\config.json"
+
+	This command will lock the configuration file located at
+	C:\MyProject\config.json.
+.NOTES
+	File Name      : Lock-ConfigFile.psm1
+	Author         : Michelle Broussard
+	Last Modified  : 2 February 2025
+#>
 function Lock-ConfigFile {
 	[CmdletBinding()]
 	param(
@@ -55,3 +76,4 @@ function Lock-ConfigFile {
 	# $PathBackup | Move-Item -Destination $env:USERPROFILE # Researched moving a file to a secure location
 
 }
+Export-ModuleMember -Function Lock-ConfigFile

@@ -1,4 +1,23 @@
-function Read-SecureConfigFile {
+<#
+.SYNOPSIS
+	This script unlocks a secure configuration file.
+.DESCRIPTION
+	This script unlocks a secure configuration file. It prompts the user for a passphrase
+	and decrypts the content of the file using a symmetric key. The decrypted content is
+	verified using a hash. If the hash is valid, the configuration becomes readable.
+.PARAMETER Path
+	The path to the secure configuration file.
+.EXAMPLE
+	Unlock-SecureConfigFile -Path "C:\MyProject\config.secured.json"
+	
+	This command will unlock the secure configuration file located at
+	C:\MyProject\config.secured.json.
+.NOTES
+	File Name      : Unlock-SecureConfigFile.psm1
+	Author         : Michelle Broussard
+	Last Modified  : 2 February 2025
+#>
+function Unlock-SecureConfigFile {
 	[CmdletBinding()]
 	param(
 		[string]$Path
@@ -38,9 +57,19 @@ function Read-SecureConfigFile {
 
 	if ($HashString -eq $SecureConfig.Hash) {
 		Write-Host "Hash verified! Configuration is intact."
-		return $DecryptedConfig
+
+		# Generate the original file name by replacing .secured.json with .json
+		$OriginalFileName = $Path -replace '\.secured\.json$','.json'
+
+		# Generate the JSON file
+		$DecryptedConfig | ConvertTo-Json -Depth 10 | Set-Content -Path $OriginalFileName
+
+		# Remove the secured file
+		Remove-Item -Path $Path
 	} else {
 		Write-Host "Hash verification failed! Configuration may be tampered with."
 		return $null
 	}
+
 }
+Export-ModuleMember -Function Unlock-SecureConfigFile
