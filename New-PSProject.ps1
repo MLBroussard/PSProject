@@ -16,7 +16,7 @@
 .PARAMETER Name
     The name of the project.
 .EXAMPLE
-    Build-PSProjectStructure.ps1
+    New-PSProject -Name "MyProject"
     This command will prompt you for the name of the project and create the folder structure.
 .NOTES
     File Name      : New-PSProject.ps1
